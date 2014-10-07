@@ -1,0 +1,120 @@
+<div ng-include="'components/navbar/navbar.html'">
+</div>
+
+<div ng-show="isLoading">
+    <span us-spinner="{top: '30%'}"></span>
+</div>
+
+
+<div class="container" ng-hide="isLoading">
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Kauppakeskus Duo </div>
+        <div class="panel-body">
+            <p> Average time spent towards Tampere in zone: {{getDurationString(trafficAvgDuo.tampere)}}
+                <br> Average time spent towards Hermia in zone: {{getDurationString(trafficAvgDuo.hervanta)}}</p>
+        </div>
+
+        <table st-table="displayedCollectionDuo" st-safe-src="trafficDataDuo" class="table">
+            <tr>
+                <th st-sort="line">Line</th>
+                <th st-sort="origin">From</th>
+                <th st-sort="direction">Direction</th>
+                <th st-sort="exit">Date</th>
+                <th st-sort="duration">Time Spent</th>
+            </tr>
+            <tr ng-repeat="vehicle in displayedCollectionDuo">
+                <td>{{vehicle.line}}</td>
+                <td>{{vehicle.origin}}</td>
+                <td>{{getDirectionString(vehicle.direction)}}</td>
+                <td>{{convertUTCDateToLocalDate(vehicle.exit)}}</td>
+                <td>{{getDurationString(vehicle.duration)}}</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Hervannan Valtaväylä</div>
+        <div class="panel-body">
+            <p> Average time spent towards Tampere in zone: {{getDurationString(trafficAvgValtavayla.tampere)}}
+                <br> Average time spent towards Hermia in zone: {{getDurationString(trafficAvgValtavayla.hervanta)}}</p>
+        </div>
+
+        <table st-table="displayedCollectionValtavayla" st-safe-src="trafficDataValtavayla" class="table">
+            <tr>
+                <th st-sort="line">Line</th>
+                <th st-sort="origin">From</th>
+                <th st-sort="direction">Direction</th>
+                <th st-sort="exit">Date</th>
+                <th st-sort="duration">Time Spent</th>
+            </tr>
+            <tr ng-repeat="vehicle in displayedCollectionValtavayla">
+                <td>{{vehicle.line}}</td>
+                <td>{{vehicle.origin}}</td>
+                <td>{{getDirectionString(vehicle.direction)}}</td>
+                <td>{{convertUTCDateToLocalDate(vehicle.exit)}}</td>
+                <td>{{getDurationString(vehicle.duration)}}</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Near Hakametsä</div>
+        <div class="panel-body">
+            <p> Average time spent towards Tampere in zone: {{getDurationString(trafficAvgKaleva.tampere)}}
+                <br> Average time spent towards Hermia in zone: {{getDurationString(trafficAvgKaleva.hervanta)}}</p>
+        </div>
+
+        <table st-table="displayedCollectionKaleva" st-safe-src="trafficDataKaleva" class="table">
+            <tr>
+                <th st-sort="line">Line</th>
+                <th st-sort="origin">From</th>
+                <th st-sort="direction">Direction</th>
+                <th st-sort="exit">Date</th>
+                <th st-sort="duration">Time Spent</th>
+            </tr>
+            <tr ng-repeat="vehicle in displayedCollectionKaleva">
+                <td>{{vehicle.line}}</td>
+                <td>{{vehicle.origin}}</td>
+                <td>{{getDirectionString(vehicle.direction)}}</td>
+                <td>{{convertUTCDateToLocalDate(vehicle.exit)}}</td>
+                <td>{{getDurationString(vehicle.duration)}}</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+<footer class="footer" ng-hide="isLoading">
+    <div class="container">
+        <p>hervanta-traffic v0.1 beta |
+            <a href="mailto:jussi.lampainen@gmail.com?Subject=feedback" target="_top">
+    contact</a>
+    </div>
+</footer>

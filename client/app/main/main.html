@@ -1,0 +1,98 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="hero-unit">
+    <div class="legend controls">
+        <form>
+            <input type="radio" ng-model="myDirection" ng-change="updateDirection()" ng-value="directions[0]"> To Hermia
+            <br/>
+            <input type="radio" ng-model="myDirection" ng-change="updateDirection()" ng-value="directions[1]"> To Tampere
+            <br/>
+        </form>
+    </div>
+    <leaflet center="hervanta" markers="markers" defaults="defaults" maxbounds="maxbounds" legend="legend" width="100%" height="340px"></leaflet>
+</div>
+
+<div class="container">
+
+    <div class="panel panel panel-default">
+        <div class="panel-heading"> {{myDirection.name}} near Hakametsä
+        </div>
+        <div class="panel-body">
+            Last three TKL bus observations between Sammon Valatie and Vuohenoja. Traffic is estimated as slow if all three busses are over average time.
+        </div>
+        <table class="table">
+            <tr>
+                <th>Line</th>
+                <th>To</th>
+                <th>Date</th>
+                <th>Observed</th>
+                <th>Time</th>
+            </tr>
+            <tr ng-repeat="vehicle in trafficData[3] | limitTo:3" ng-class="{danger:overAverage(3,vehicle.duration)}">
+                <td>{{vehicle.line}}</td>
+                <td>{{vehicle.destination}}</td>
+                <td>{{convertToLocalDate(vehicle.exit)}}</td>
+                <td>{{convertRelativeTime(vehicle.exit)}}</td>
+                <td>{{getDurationString(3,vehicle.duration)}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="panel panel panel-default">
+        <div class="panel-heading"> {{myDirection.name}} at Hervannan Valtaväylä
+        </div>
+        <div class="panel-body">
+            Last three TKL bus observations between Pehkosuonkatu and Hepolamminkatu. Traffic is estimated as slow if all three busses are over average time.
+        </div>
+        <table class="table">
+            <tr>
+                <th>Line</th>
+                <th>To</th>
+                <th>Date</th>
+                <th>Observed</th>
+                <th>Time</th>
+            </tr>
+            <tr ng-repeat="vehicle in trafficData[2] | limitTo:3" ng-class="{danger:overAverage(2,vehicle.duration)}">
+                <td>{{vehicle.line}}</td>
+                <td>{{vehicle.destination}}</td>
+                <td>{{convertToLocalDate(vehicle.exit)}}</td>
+                <td>{{convertRelativeTime(vehicle.exit)}}</td>
+                <td>{{getDurationString(2,vehicle.duration)}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="panel panel panel-default">
+        <div class="panel-heading"> {{myDirection.name}} near Kauppakeskus Duo
+        </div>
+        <div class="panel-body">
+            Last three TKL bus observations between Hervannan Valtaväylä and Hermiankatu. Traffic is estimated as slow if all three busses are over average time.
+        </div>
+        <table class="table">
+            <tr>
+                <th>Line</th>
+                <th>To</th>
+                <th>Date</th>
+                <th>Observed</th>
+                <th>Time</th>
+            </tr>
+            <tr ng-repeat="vehicle in trafficData[1] | limitTo:3" ng-class="{danger:overAverage(1,vehicle.duration)}">
+                <td>{{vehicle.line}}</td>
+                <td>{{vehicle.destination}}</td>
+                <td>{{convertToLocalDate(vehicle.exit)}}</td>
+                <td>{{convertRelativeTime(vehicle.exit)}}</td>
+                <td>{{getDurationString(1,vehicle.duration)}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>hervanta-traffic v0.1 beta |
+            <a href="mailto:jussi.lampainen@gmail.com?Subject=feedback" target="_top">
+    contact</a>
+    </div>
+</footer>
