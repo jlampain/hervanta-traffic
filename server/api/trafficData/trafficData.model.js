@@ -11,8 +11,7 @@ var TrafficdataSchema = new Schema({
   exit: Date,
   duration: Number, 
   origin: String,
-  destination: String,
-  createdAt: { type: Date, expires: '14d' }
+  destination: String
 });
 
 module.exports = mongoose.model('Trafficdata', TrafficdataSchema);

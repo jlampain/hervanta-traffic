@@ -87,7 +87,7 @@ angular.module('hervantaTrafficApp')
                     fillColor: '#008000',
                     type: 'polygon',
                     popupAnchor: [0, 0],
-                    fillOpacity: 100,
+                    fillOpacity: 0.7,
                     latlngs: [{
                         lat: 61.446607,
                         lng: 23.857897

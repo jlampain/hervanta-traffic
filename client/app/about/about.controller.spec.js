@@ -19,3 +19,4 @@ describe('Controller: AboutCtrl', function () {
     expect(1).toEqual(1);
   });
 });
+

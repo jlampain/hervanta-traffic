@@ -8,8 +8,7 @@ angular.module('hervantaTrafficApp', [
   'ui.bootstrap',
   'leaflet-directive',
   'underscore',
-  'smart-table',
-  'angularSpinner'
+  'smart-table'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

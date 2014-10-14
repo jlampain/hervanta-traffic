@@ -41,6 +41,7 @@ exports.average = function(req, res) {
 
 // Creates a new trafficData in the DB.
 exports.create = function(req, res) {
+  // add new trafficdata..
   Trafficdata.create(req.body, function(err, trafficData) {
     if(err) { return handleError(res, err); }
     return res.json(201, trafficData);

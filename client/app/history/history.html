@@ -1,22 +1,29 @@
 <div ng-include="'components/navbar/navbar.html'">
 </div>
 
-<div ng-show="isLoading">
-    <span us-spinner="{top: '30%'}"></span>
-</div>
 
+<div class="spinner" ng-show="isLoading">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <p>Please wait</p>
+</div>
 
 <div class="container" ng-hide="isLoading">
 
-    <div class="panel panel-default">
+        <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">Kauppakeskus Duo </div>
+        <div class="panel-heading">Near Hakametsä</div>
         <div class="panel-body">
-            <p> Average time spent towards Tampere in zone: {{getDurationString(trafficAvgDuo.tampere)}}
-                <br> Average time spent towards Hermia in zone: {{getDurationString(trafficAvgDuo.hervanta)}}</p>
+            <div id="hakametsa"></div>
+            <div class="infopanel">
+            <p>Total {{trafficDataKaleva.length}} TKL bus observations between {{convertToLocalDate(trafficDataKaleva[trafficDataKaleva.length-1].exit)}} and {{convertToLocalDate(trafficDataKaleva[0].exit)}} in zone. Average time spent towards Tampere in zone is {{getDurationString(trafficAvgKaleva.tampere)}}. Average time spent towards Hermia in zone is {{getDurationString(trafficAvgKaleva.hervanta)}}.
+            </p>
+            </div>
         </div>
 
-        <table st-table="displayedCollectionDuo" st-safe-src="trafficDataDuo" class="table">
+        <table st-table="displayedCollectionKaleva" st-safe-src="trafficDataKaleva" class="table">
             <tr>
                 <th st-sort="line">Line</th>
                 <th st-sort="origin">From</th>
@@ -24,7 +31,7 @@
                 <th st-sort="exit">Date</th>
                 <th st-sort="duration">Time Spent</th>
             </tr>
-            <tr ng-repeat="vehicle in displayedCollectionDuo">
+            <tr ng-repeat="vehicle in displayedCollectionKaleva">
                 <td>{{vehicle.line}}</td>
                 <td>{{vehicle.origin}}</td>
                 <td>{{getDirectionString(vehicle.direction)}}</td>
@@ -41,13 +48,14 @@
         </table>
     </div>
 
-
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Hervannan Valtaväylä</div>
         <div class="panel-body">
-            <p> Average time spent towards Tampere in zone: {{getDurationString(trafficAvgValtavayla.tampere)}}
-                <br> Average time spent towards Hermia in zone: {{getDurationString(trafficAvgValtavayla.hervanta)}}</p>
+            <div id="valtavayla"></div>
+            <div class="infopanel">
+            <p>Total {{trafficDataValtavayla.length}} TKL bus observations between {{convertToLocalDate(trafficDataValtavayla[trafficDataValtavayla.length-1].exit)}} and {{convertToLocalDate(trafficDataValtavayla[0].exit)}} in zone. Average time spent towards Tampere in zone is {{getDurationString(trafficAvgValtavayla.tampere)}}. Average time spent towards Hermia in zone is {{getDurationString(trafficAvgValtavayla.hervanta)}}.</p>
+            </div>
         </div>
 
         <table st-table="displayedCollectionValtavayla" st-safe-src="trafficDataValtavayla" class="table">
@@ -78,13 +86,15 @@
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">Near Hakametsä</div>
+        <div class="panel-heading"> Kauppakeskus Duo </div>
         <div class="panel-body">
-            <p> Average time spent towards Tampere in zone: {{getDurationString(trafficAvgKaleva.tampere)}}
-                <br> Average time spent towards Hermia in zone: {{getDurationString(trafficAvgKaleva.hervanta)}}</p>
+            <div id="duo"></div>
+            <div class="infopanel">
+            <p>Total {{trafficDataDuo.length}} TKL bus observations between {{convertToLocalDate(trafficDataDuo[trafficDataDuo.length-1].exit)}} and {{convertToLocalDate(trafficDataDuo[0].exit)}} in zone. Average time spent towards Tampere in zone is {{getDurationString(trafficAvgDuo.tampere)}}. Average time spent towards Hermia in zone is {{getDurationString(trafficAvgDuo.hervanta)}}.</p>
+            </div>
         </div>
 
-        <table st-table="displayedCollectionKaleva" st-safe-src="trafficDataKaleva" class="table">
+        <table st-table="displayedCollectionDuo" st-safe-src="trafficDataDuo" class="table">
             <tr>
                 <th st-sort="line">Line</th>
                 <th st-sort="origin">From</th>
@@ -92,7 +102,7 @@
                 <th st-sort="exit">Date</th>
                 <th st-sort="duration">Time Spent</th>
             </tr>
-            <tr ng-repeat="vehicle in displayedCollectionKaleva">
+            <tr ng-repeat="vehicle in displayedCollectionDuo">
                 <td>{{vehicle.line}}</td>
                 <td>{{vehicle.origin}}</td>
                 <td>{{getDirectionString(vehicle.direction)}}</td>
@@ -111,7 +121,7 @@
 
 </div>
 
-<footer class="footer" ng-hide="isLoading">
+<footer class="footer">
     <div class="container">
         <p>hervanta-traffic v0.1 beta |
             <a href="mailto:jussi.lampainen@gmail.com?Subject=feedback" target="_top">

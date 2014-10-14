@@ -20,6 +20,10 @@ module.exports = function(config) {
       'client/bower_components/angular-route/angular-route.js',
       'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'client/bower_components/lodash/dist/lodash.compat.js',
+      'client/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js',
+      'client/bower_components/angular-underscore-module/angular-underscore-module.js',
+      'client/bower_components/angular-smart-table/dist/smart-table.min.js',
+      'client/bower_components/angular-spinner/angular-spinner.js',
       'client/app/app.js',
       'client/app/app.coffee',
       'client/app/**/*.js',
@@ -30,6 +34,7 @@ module.exports = function(config) {
       'client/components/**/*.jade',
       'client/app/**/*.html',
       'client/components/**/*.html'
+
     ],
 
     preprocessors: {

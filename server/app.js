@@ -3,7 +3,7 @@
  */
 'use strict';
 
-//require('newrelic');
+require('newrelic');
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -184,7 +184,7 @@ function analyseTrafficData(traffic_data) {
 
 function getTrafficData() {
     request(siriUrl, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
             analyseTrafficData(body);
         } else {
             // try again after 30 minutes...
@@ -196,25 +196,40 @@ function getTrafficData() {
 function storeData(vehicle_data) {
     
     // bug fix for line 38 appearing in zone 2
-    if (vehicle_data.line == "38" && vehicle_data.zone == 2){
+    if (vehicle_data.line === "38" && vehicle_data.zone === 2){
         return;
     }
 
      // bug fix for line 4 appearing in zone 1
-    if (vehicle_data.line == "4" && vehicle_data.zone == 1){
+    if (vehicle_data.line === "4" && vehicle_data.zone === 1){
         return;
     }
 
     // and fix for kaleva zone
-     if (vehicle_data.zone == 3){
-        if (vehicle_data.line != '20' && vehicle_data.line != '24' && vehicle_data.line != '3'
-            && vehicle_data.line != '5' && vehicle_data.line != '3V'){
+     if (vehicle_data.zone === 3){
+        if (vehicle_data.line !== '20' && vehicle_data.line !== '24' && vehicle_data.line !== '3' && vehicle_data.line !== '5' && vehicle_data.line !== '3V'){
             return;
         }
     }
 
    var tmp_duration = (vehicle_data.exitTime - vehicle_data.entryTime); // difference in millisecond
 
+    // check first old entries and delete one entry if needed..
+    // ..this just to limit the db size
+    trafficData.count({ zone: vehicle_data.zone, direction: vehicle_data.direction },function (error, count) {
+    if(error) { return }
+    if (count > 2000){
+        trafficData.find({ zone: vehicle_data.zone, direction: vehicle_data.direction }).sort({exit: 1}).limit(2).exec(function (err, data) {
+            if(err) { return }
+            if (data.length > 0){
+                console.log('..removing old entry');
+                data[0].remove();
+                }
+            });
+        }
+    });
+
+    // and add new entry
     trafficData.create({
         zone: vehicle_data.zone,
         direction: vehicle_data.direction,

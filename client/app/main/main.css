@@ -4,13 +4,8 @@
     margin-top: -21px;
     margin-bottom: 15px;
     border-bottom: 1px solid rgb(231,231,231);
-    border-top: 1px solid rgb(231,231,231);
-    background-color: rgb(248,248,248);
-    padding-left: 1px;
-    padding-right:1px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-
+    background-color: solid rgb(231,231,231);
+  
 }
 
 .hero-unit .controls{

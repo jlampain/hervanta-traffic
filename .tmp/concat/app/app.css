@@ -1,0 +1,254 @@
+
+/**
+ * Bootstrap Fonts
+ */
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
+    src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
+    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+/**
+ *Font Awesome Fonts
+ */
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
+    src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
+    url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'),
+    url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
+    url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/**
+ * App-wide Styles
+ */
+
+ * {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+} 
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    border-top: 1px solid #E5E5E5;
+}
+
+@media only screen 
+and (max-device-width : 568px) {
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+}
+
+
+
+
+.st-sort-ascent:before {
+    content: '\25B2';
+}
+
+.st-sort-descent:before {
+    content: '\25BC';
+}
+
+.pagination {
+	margin-top: 10px;
+}
+
+.infopanel{
+	float:left;
+	max-width: 80%;
+}
+
+#duo {
+	float:left;
+	margin-right:20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: url(/assets/images/duo.png) center;
+	background-size: cover;
+	border: 1px solid darkgray;
+}
+
+#valtavayla {
+	float:left;
+	margin-right:20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: url(/assets/images/valtavayla.png) center;
+	background-size: cover;
+	border: 1px solid darkgray;
+}
+
+#hakametsa {
+	float:left;
+	margin-right:20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: url(/assets/images/hakametsa.png) center;
+	background-size: cover;
+	border: 1px solid darkgray;
+}
+
+
+/**
+ * Spinner from Spinkit+ 
+ * https://github.com/tobiasahlin/SpinKit 
+ */
+
+.spinner {
+  margin: 50px auto;
+  margin-bottom: 100px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: darkgray;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+
+
+
+
+.hero-unit {
+    position: relative;
+    margin-top: -21px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgb(231,231,231);
+    background-color: solid rgb(231,231,231);
+  
+}
+
+.hero-unit .controls{
+    margin-top: 200px;
+    z-index: 10;
+    left:10px;
+    position: absolute;
+}
+
+.legend {
+    padding: 6px 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: rgba(255,255,255, 0.9);
+    line-height: 19px;
+    border-radius: 5px;
+    color: #555;
+    width:145px;   
+}
+
+.legend i {
+    color: #777;
+    width: 18px;
+    height: 18px;
+    float: left;
+    opacity: 0.9;
+    margin-right: 8px;
+}
+
+.zone-icon{
+     width: 200px;
+    height: 100px;
+    font-size: 30px;
+    background-color: none;
+    color:#3498db;
+}
+
+.modal-primary .modal-header,
+.modal-info .modal-header,
+.modal-success .modal-header,
+.modal-warning .modal-header,
+.modal-danger .modal-header {
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+}
+.modal-primary .modal-header {
+  background: #428bca;
+}
+.modal-info .modal-header {
+  background: #5bc0de;
+}
+.modal-success .modal-header {
+  background: #5cb85c;
+}
+.modal-warning .modal-header {
+  background: #f0ad4e;
+}
+.modal-danger .modal-header {
+  background: #d9534f;
+}

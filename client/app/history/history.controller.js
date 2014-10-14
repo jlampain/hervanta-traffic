@@ -51,9 +51,7 @@ angular.module('hervantaTrafficApp')
         };
 
         $scope.getDurationString = function(durationData) {
-            return humanizeDuration(durationData.toFixed(0), {
-                units: ['seconds']
-            }); // jshint ignore:line
+            return humanizeDuration(durationData.toFixed(0), {units: ['seconds']}); // jshint ignore:line 
         };
 
         $scope.updateAverages = function() {
@@ -91,6 +89,10 @@ angular.module('hervantaTrafficApp')
 
         $scope.convertUTCDateToLocalDate = function(dateString) {
             return moment(dateString).format('MMM Do, HH:mm');
+        };
+
+        $scope.convertToLocalDate = function(dateString) {
+            return moment(dateString).format('MMM Do');
         };
 
         $scope.updateAverages();
