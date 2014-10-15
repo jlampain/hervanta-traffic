@@ -212,19 +212,25 @@ function storeData(vehicle_data) {
         }
     }
 
-   var tmp_duration = (vehicle_data.exitTime - vehicle_data.entryTime); // difference in millisecond
+    var tmp_duration = (vehicle_data.exitTime - vehicle_data.entryTime); // difference in millisecond
 
-    // check first old entries and delete one entry if needed..
-    // ..this just to limit the db size
+    // sanity check for duration: must be greater than 10 seconds
+    if (tmp_duration < 10000){
+        return;
+    }
+
+    // check first old entries and delete one or more entries if needed..
+    // ..this just to limit the db size for 2500 entries for each area & direction
     trafficData.count({ zone: vehicle_data.zone, direction: vehicle_data.direction },function (error, count) {
     if(error) { return }
-    if (count > 2000){
-        trafficData.find({ zone: vehicle_data.zone, direction: vehicle_data.direction }).sort({exit: 1}).limit(2).exec(function (err, data) {
+    if (count > 2500){
+        var limit = count - 2500;
+        trafficData.find({ zone: vehicle_data.zone, direction: vehicle_data.direction }).sort({exit: 1}).limit(limit).exec(function (err, data) {
             if(err) { return }
-            if (data.length > 0){
-                console.log('..removing old entry');
-                data[0].remove();
-                }
+                data.forEach(function(entry) {
+                    console.log('...removing old entry');
+                    entry.remove();
+                });
             });
         }
     });
